@@ -1,6 +1,5 @@
 package com.qa.service.business;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.qa.persistence.domain.Trainee;
 import com.qa.persistence.domain.Trainer;
 
@@ -14,7 +13,7 @@ public interface IClassroomService {
 
 	String createTrainee(String account);
 
-	String getAllTrainers() throws JsonProcessingException;
+	String getAllTrainers();
 
 	String deleteTrainer(Long id);
 

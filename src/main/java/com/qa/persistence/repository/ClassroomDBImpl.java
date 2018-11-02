@@ -16,6 +16,7 @@ import com.qa.persistence.domain.Trainee;
 import com.qa.persistence.domain.Trainer;
 import com.qa.util.JSONUtil;
 
+
 @Transactional(SUPPORTS)
 @Default
 public class ClassroomDBImpl implements IConnect {
@@ -29,8 +30,8 @@ public class ClassroomDBImpl implements IConnect {
 
 	@Override
 	@Transactional(REQUIRED)
-	public String createTrainer(String account) {
-		Trainer acc = util.getObjectForJSON(account, Trainer.class);
+	public String createTrainer(String trainer) {
+		Trainer acc = util.getObjectForJSON(trainer, Trainer.class);
 		manager.persist(acc);
 		return "{\"message\": \"Trainer Successfully Added\"}";
 
@@ -38,8 +39,8 @@ public class ClassroomDBImpl implements IConnect {
 
 	@Override
 	@Transactional(REQUIRED)
-	public String createTrainee(String account) {
-		Trainer acc = util.getObjectForJSON(account, Trainer.class);
+	public String createTrainee(String trainee) {
+		Trainer acc = util.getObjectForJSON(trainee, Trainer.class);
 		manager.persist(acc);
 		return "{\"message\": \"Trainee Successfully Added\"}";
 

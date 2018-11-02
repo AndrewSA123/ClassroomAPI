@@ -17,6 +17,8 @@ public class Trainee {
 	@Column(length = 45)
 	String lastName;
 
+	Long classroomID;
+
 	public Trainee() {
 
 	}
@@ -35,8 +37,22 @@ public class Trainee {
 				+ "\"" + "}";
 	}
 
-	public Long getID() {
+	public Long gettraineeID() {
 		return this.traineeID;
+	}
+
+	public String settraineeID(Long id) {
+
+		this.traineeID = id;
+
+		return "ID Changed";
+	}
+
+	public String setClassroomID(Long id) {
+
+		this.classroomID = id;
+
+		return "ID changed";
 	}
 
 	public String setFirstName(String name) {
@@ -66,6 +82,13 @@ public class Trainee {
 	public String getName() {
 
 		return firstName + " " + lastName;
+	}
+
+	public String setTrainerID(Long id) {
+
+		this.classroomID = id;
+
+		return "ID Changed";
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,15 +18,15 @@ public class Trainer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long classroomID;
+	private Long classroomID;
 	@Column(length = 45)
-	String firstName;
+	private String firstName;
 	@Column(length = 45)
-	String lastName;
+	private String lastName;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "traineeID")
-	List<String> trainees = new ArrayList<String>();
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "trainerID")
+	private List<String> trainees = new ArrayList<>();
 
 	public Trainer() {
 
@@ -45,7 +46,7 @@ public class Trainer {
 				+ "\"" + "}";
 	}
 
-	public Long getID() {
+	public Long getclassroomID() {
 		return this.classroomID;
 	}
 

@@ -2,7 +2,6 @@ package com.qa.service.business;
 
 import javax.inject.Inject;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.qa.persistence.domain.Trainee;
 import com.qa.persistence.domain.Trainer;
 import com.qa.persistence.repository.IConnect;
@@ -32,7 +31,7 @@ public class ClassroomService implements IClassroomService {
 	}
 
 	@Override
-	public String getAllTrainers() throws JsonProcessingException {
+	public String getAllTrainers() {
 		return repo.getAllTrainer();
 	}
 

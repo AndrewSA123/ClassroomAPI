@@ -9,7 +9,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.qa.service.business.IClassroomService;
 
 @Path("/classroom")
@@ -21,7 +20,7 @@ public class ClassroomEndpoint {
 	@Path("/getAlltrainers")
 	@GET
 	@Produces({ "application/json" })
-	public String getAllTrainers() throws JsonProcessingException {
+	public String getAllTrainers() {
 		return ac.getAllTrainers();
 	}
 

@@ -21,36 +21,65 @@ public class ClassroomEndpoint {
 	@Path("/getAlltrainers")
 	@GET
 	@Produces({ "application/json" })
-	public String getAllMovies() throws JsonProcessingException {
-		return ac.getAllAccounts();
+	public String getAllTrainers() throws JsonProcessingException {
+		return ac.getAllTrainers();
 	}
+
 
 	@Path("/getTrainer/{id}")
 	@GET
 	@Produces({ "application/json" })
-	public String getAnAccount(@PathParam("id") Long id) {
-		return ac.getAccount(id).toString();
+	public String getTrainer(@PathParam("id") Long id) {
+		return ac.getTrainer(id).toString();
+	}
+
+	@Path("/getTrainee/{id}")
+	@GET
+	@Produces({ "application/json" })
+	public String getTrainee(@PathParam("id") Long id) {
+		return ac.getTrainee(id).toString();
 	}
 
 	@Path("/createTrainer")
 	@POST
 	@Produces({ "application/json" })
-	public String addAccount(String account) {
-		return ac.createAccount(account);
+	public String addTrainer(String account) {
+		return ac.createTrainer(account);
+	}
+
+	@Path("/createTrainee")
+	@POST
+	@Produces({ "application/json" })
+	public String addTrainee(String account) {
+		return ac.createTrainee(account);
 	}
 
 	@Path("/deleteTrainer/{id}")
 	@DELETE
 	@Produces({ "application/json" })
-	public String deleteAccount(@PathParam("id") Long id) {
-		return ac.deleteAccount(id);
+	public String deleteTrainer(@PathParam("id") Long id) {
+		return ac.deleteTrainer(id);
+	}
+
+	@Path("/deleteTrainer/{id}")
+	@DELETE
+	@Produces({ "application/json" })
+	public String deleteTrainee(@PathParam("id") Long id) {
+		return ac.deleteTrainee(id);
 	}
 
 	@Path("/updateTrainer/{id}")
 	@PUT
 	@Produces({ "application/json" })
-	public String updateAccount(@PathParam("id") Long id, String acc) {
-		return ac.updateAccount(id, acc);
+	public String updateTrainer(@PathParam("id") Long id, String acc) {
+		return ac.updateTrainer(id, acc);
+	}
+
+	@Path("/updateTrainer/{id}")
+	@PUT
+	@Produces({ "application/json" })
+	public String updateTrainee(@PathParam("id") Long id, String acc) {
+		return ac.updateTrainee(id, acc);
 	}
 
 	public void setService(IClassroomService accountService) {

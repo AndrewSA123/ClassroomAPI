@@ -7,27 +7,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Account {
+public class Trainee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long ID;
+	Long traineeID;
 	@Column(length = 45)
 	String firstName;
 	@Column(length = 45)
 	String lastName;
-	@Column(length = 4)
-	String accountNumber;
 
-	public Account() {
+	public Trainee() {
 
 	}
 
-	public Account(String accountNumber, String fName, String lName) {
+	public Trainee(String fName, String lName) {
 
 		firstName = fName;
 		lastName = lName;
-		this.accountNumber = accountNumber;
 
 	}
 
@@ -35,13 +32,12 @@ public class Account {
 	public String toString() {
 		// TODO Auto-generated method stub
 		return "{\"firstName\": " + "\"" + this.firstName + "\"" + "," + "\n\"lastName\": " + "\"" + this.lastName
-				+ "\"" + "," + "\"" + "accountNumber\":" + "\"" + this.accountNumber + "\"" + "}";
+				+ "\"" + "}";
 	}
 
 	public Long getID() {
-		return this.ID;
+		return this.traineeID;
 	}
-
 
 	public String setFirstName(String name) {
 
@@ -57,12 +53,6 @@ public class Account {
 		return "Last Name Changed";
 	}
 
-	public String setAccountNumber(String id) {
-
-		accountNumber = id;
-
-		return "Account Number Changed";
-	}
 
 	public String getFirstName() {
 		return firstName;
@@ -72,9 +62,6 @@ public class Account {
 		return lastName;
 	}
 
-	public String getAccountNumber() {
-		return accountNumber;
-	}
 
 	public String getName() {
 

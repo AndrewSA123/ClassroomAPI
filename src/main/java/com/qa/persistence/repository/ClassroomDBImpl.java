@@ -12,7 +12,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
-import com.qa.persistence.domain.Account;
+import com.qa.persistence.domain.Trainee;
+import com.qa.persistence.domain.Trainer;
 import com.qa.util.JSONUtil;
 
 @Transactional(SUPPORTS)
@@ -25,60 +26,89 @@ public class ClassroomDBImpl implements IConnect {
 	@Inject
 	private JSONUtil util;
 
-	@Inject
-	IdCheck BR;
 
 	@Override
 	@Transactional(REQUIRED)
-	public String createAccount(String account) {
-		Account acc = util.getObjectForJSON(account, Account.class);
+	public String createTrainer(String account) {
+		Trainer acc = util.getObjectForJSON(account, Trainer.class);
+		manager.persist(acc);
+		return "{\"message\": \"Trainer Successfully Added\"}";
 
-		if(BR.checkID(acc)) {
-			manager.persist(acc);
-			return "{\"message\": \"Account Successfully Added\"}";
-		}
-		return "{\"message\": \"This Account is Blocked\"}";
+	}
 
+	@Override
+	@Transactional(REQUIRED)
+	public String createTrainee(String account) {
+		Trainer acc = util.getObjectForJSON(account, Trainer.class);
+		manager.persist(acc);
+		return "{\"message\": \"Trainee Successfully Added\"}";
+
+	}
+
+	@Override
+	public Trainer findTrainer(Long id) {
+		return manager.find(Trainer.class, id);
+	}
+
+	@Override
+	public Trainee findTrainee(Long id) {
+		return manager.find(Trainee.class, id);
 	}
 
 
 	@Override
-	public Account findAccount(Long id) {
-		return manager.find(Account.class, id);
-	}
-
-
-	@Override
-	public String getAllAccounts() {
+	public String getAllTrainer() {
 		Query q = manager.createQuery("Select a FROM Account a");
-		Collection<Account> accounts = (Collection<Account>) q.getResultList();
+		Collection<Trainer> accounts = (Collection<Trainer>) q.getResultList();
 		return util.getJSONForObject(accounts);
 	}
 
 
 	@Override
 	@Transactional(REQUIRED)
-	public String deleteAccount(Long id) {
-		Account accountInDb = findAccount(id);
+	public String deleteTrainer(Long id) {
+		Trainer accountInDb = findTrainer(id);
 		if (accountInDb != null) {
 			manager.remove(accountInDb);
 		}
-		return "{\"message\": \"Account sucessfully deleted\"}";
+		return "{\"message\": \"Trainer sucessfully deleted\"}";
+	}
+
+	@Override
+	@Transactional(REQUIRED)
+	public String deleteTrainee(Long id) {
+		Trainee accountInDb = findTrainee(id);
+		if (accountInDb != null) {
+			manager.remove(accountInDb);
+		}
+		return "{\"message\": \"Trainee sucessfully deleted\"}";
 	}
 
 
 	@Override
 	@Transactional(REQUIRED)
-	public String updateAccount(String a, Long id) {
-		Account newAccount = util.getObjectForJSON(a, Account.class);
-		Account old = manager.find(Account.class, id);
+	public String updateTrainer(String a, Long id) {
+		Trainer newAccount = util.getObjectForJSON(a, Trainer.class);
+		Trainer old = manager.find(Trainer.class, id);
 
 		old.setFirstName(newAccount.getFirstName());
 		old.setLastName(newAccount.getLastName());
-		old.setAccountNumber(newAccount.getAccountNumber());
 
-		return "{\"message\": \"Account sucessfully updated\"}";
+		return "{\"message\": \"Trainer sucessfully updated\"}";
 
+
+	}
+
+	@Override
+	@Transactional(REQUIRED)
+	public String updateTrainee(String a, Long id) {
+		Trainee newAccount = util.getObjectForJSON(a, Trainee.class);
+		Trainee old = manager.find(Trainee.class, id);
+
+		old.setFirstName(newAccount.getFirstName());
+		old.setLastName(newAccount.getLastName());
+
+		return "{\"message\": \"Trainee sucessfully updated\"}";
 
 	}
 

@@ -1,18 +1,27 @@
 package com.qa.service.business;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.qa.persistence.domain.Account;
+import com.qa.persistence.domain.Trainee;
+import com.qa.persistence.domain.Trainer;
 
 public interface IClassroomService {
 
-	Account getAccount(Long accountNum);
+	Trainer getTrainer(Long accountNum);
 
-	String createAccount(String account);
+	Trainee getTrainee(Long accountNum);
 
-	String getAllAccounts() throws JsonProcessingException;
+	String createTrainer(String account);
 
-	String deleteAccount(Long id);
+	String createTrainee(String account);
 
-	String updateAccount(Long id, String account);
+	String getAllTrainers() throws JsonProcessingException;
+
+	String deleteTrainer(Long id);
+
+	String deleteTrainee(Long id);
+
+	String updateTrainer(Long id, String account);
+
+	String updateTrainee(Long id, String account);
 
 }

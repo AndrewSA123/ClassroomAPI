@@ -1,6 +1,5 @@
 package com.qa.persistence.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -26,16 +25,17 @@ public class Trainer {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "trainerID")
-	private List<String> trainees = new ArrayList<>();
+	private List<Trainee> trainees;;
 
 	public Trainer() {
 
 	}
 
-	public Trainer(String fName, String lName) {
+	public Trainer(String fName, String lName, Trainee trainee) {
 
 		firstName = fName;
 		lastName = lName;
+		this.trainees = (List<Trainee>) trainee;
 
 	}
 
@@ -46,10 +46,15 @@ public class Trainer {
 				+ "\"" + "}";
 	}
 
-	public Long getclassroomID() {
+	public Long getClassroomID() {
 		return this.classroomID;
 	}
 
+	public String setClassroomID(Long classroomID) {
+		this.classroomID = classroomID;
+
+		return "ID updated";
+	}
 
 	public String setFirstName(String name) {
 
@@ -78,6 +83,16 @@ public class Trainer {
 	public String getName() {
 
 		return firstName + " " + lastName;
+	}
+
+	public Trainee getTrainee() {
+		return (Trainee) trainees;
+	}
+
+	public String setTrainee(Trainee trainee) {
+		this.trainees = (List<Trainee>) trainee;
+
+		return "Trainee added";
 	}
 
 }

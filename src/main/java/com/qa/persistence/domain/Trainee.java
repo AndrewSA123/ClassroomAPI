@@ -1,6 +1,5 @@
 package com.qa.persistence.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,9 +11,7 @@ public class Trainee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long traineeID;
-	@Column(length = 45)
 	String firstName;
-	@Column(length = 45)
 	String lastName;
 
 	Long classroomID;
@@ -55,6 +52,10 @@ public class Trainee {
 		return "ID changed";
 	}
 
+	public Long getClassroomID() {
+		return this.classroomID;
+	}
+
 	public String setFirstName(String name) {
 
 		firstName = name;
@@ -78,11 +79,6 @@ public class Trainee {
 		return lastName;
 	}
 
-
-	public String getName() {
-
-		return firstName + " " + lastName;
-	}
 
 	public String setTrainerID(Long id) {
 

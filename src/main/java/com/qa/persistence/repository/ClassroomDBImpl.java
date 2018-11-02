@@ -40,7 +40,7 @@ public class ClassroomDBImpl implements IConnect {
 	@Override
 	@Transactional(REQUIRED)
 	public String createTrainee(String trainee) {
-		Trainer acc = util.getObjectForJSON(trainee, Trainer.class);
+		Trainee acc = util.getObjectForJSON(trainee, Trainee.class);
 		manager.persist(acc);
 		return "{\"message\": \"Trainee Successfully Added\"}";
 
@@ -59,7 +59,7 @@ public class ClassroomDBImpl implements IConnect {
 
 	@Override
 	public String getAllTrainer() {
-		Query q = manager.createQuery("Select a FROM Account a");
+		Query q = manager.createQuery("Select a FROM Trainer a");
 		Collection<Trainer> accounts = (Collection<Trainer>) q.getResultList();
 		return util.getJSONForObject(accounts);
 	}

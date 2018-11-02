@@ -2,8 +2,8 @@ package com.qa.service.business;
 
 import javax.inject.Inject;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.qa.persistence.domain.Account;
+import com.qa.persistence.domain.Trainee;
+import com.qa.persistence.domain.Trainer;
 import com.qa.persistence.repository.IConnect;
 
 public class ClassroomService implements IClassroomService {
@@ -12,27 +12,46 @@ public class ClassroomService implements IClassroomService {
 	private IConnect repo;
 
 	@Override
-	public Account getAccount(Long accountNum) {
-		return repo.findAccount(accountNum);
+	public Trainer getTrainer(Long accountNum) {
+		return repo.findTrainer(accountNum);
+	}
+
+	public Trainee getTrainee(Long accountNum) {
+		return repo.findTrainee(accountNum);
 	}
 
 	@Override
-	public String createAccount(String account) {
-		return repo.createAccount(account);
+	public String createTrainer(String account) {
+		return repo.createTrainer(account);
 	}
 
 	@Override
-	public String getAllAccounts() throws JsonProcessingException {
-		return repo.getAllAccounts();
+	public String createTrainee(String account) {
+		return repo.createTrainee(account);
 	}
 
 	@Override
-	public String deleteAccount(Long id) {
-		return repo.deleteAccount(id);
+	public String getAllTrainers() {
+		return repo.getAllTrainer();
 	}
 
 	@Override
-	public String updateAccount(Long id, String account) {
-		return repo.updateAccount(account, id);
+	public String deleteTrainee(Long id) {
+		return repo.deleteTrainee(id);
+	}
+
+	@Override
+	public String deleteTrainer(Long id) {
+		return repo.deleteTrainer(id);
+	}
+
+	@Override
+	public String updateTrainer(Long id, String account) {
+		return repo.updateTrainer(account, id);
+	}
+
+	@Override
+	public String updateTrainee(Long id, String account) {
+		return repo.updateTrainee(account, id);
 	}
 }

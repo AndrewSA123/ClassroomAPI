@@ -1,17 +1,26 @@
 package com.qa.persistence.repository;
 
-import com.qa.persistence.domain.Account;
+import com.qa.persistence.domain.Trainee;
+import com.qa.persistence.domain.Trainer;
 
 public interface IConnect {
 
-	String createAccount(String account);
+	String createTrainer(String account);
 
-	Account findAccount(Long id);
+	Trainer findTrainer(Long id);
 
-	String getAllAccounts();
+	String getAllTrainer();
 
-	String deleteAccount(Long id);
+	String deleteTrainer(Long id);
 
-	String updateAccount(String a, Long id);
+	String updateTrainer(String a, Long id);
+
+	String createTrainee(String account);
+
+	Trainee findTrainee(Long id);
+
+	String deleteTrainee(Long id);
+
+	String updateTrainee(String a, Long id);
 
 }

@@ -1,33 +1,41 @@
 package com.qa.persistence.domain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Account {
+public class Trainer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long ID;
+	private Long classroomID;
 	@Column(length = 45)
-	String firstName;
+	private String firstName;
 	@Column(length = 45)
-	String lastName;
-	@Column(length = 4)
-	String accountNumber;
+	private String lastName;
 
-	public Account() {
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "trainerID")
+	private List<Trainee> trainees;;
+
+	public Trainer() {
 
 	}
 
-	public Account(String accountNumber, String fName, String lName) {
+	public Trainer(String fName, String lName, Trainee trainee) {
 
 		firstName = fName;
 		lastName = lName;
-		this.accountNumber = accountNumber;
+		this.trainees = (List<Trainee>) trainee;
 
 	}
 
@@ -35,13 +43,18 @@ public class Account {
 	public String toString() {
 		// TODO Auto-generated method stub
 		return "{\"firstName\": " + "\"" + this.firstName + "\"" + "," + "\n\"lastName\": " + "\"" + this.lastName
-				+ "\"" + "," + "\"" + "accountNumber\":" + "\"" + this.accountNumber + "\"" + "}";
+				+ "\"" + "}";
 	}
 
-	public Long getID() {
-		return this.ID;
+	public Long getClassroomID() {
+		return this.classroomID;
 	}
 
+	public String setClassroomID(Long classroomID) {
+		this.classroomID = classroomID;
+
+		return "ID updated";
+	}
 
 	public String setFirstName(String name) {
 
@@ -57,12 +70,6 @@ public class Account {
 		return "Last Name Changed";
 	}
 
-	public String setAccountNumber(String id) {
-
-		accountNumber = id;
-
-		return "Account Number Changed";
-	}
 
 	public String getFirstName() {
 		return firstName;
@@ -72,13 +79,20 @@ public class Account {
 		return lastName;
 	}
 
-	public String getAccountNumber() {
-		return accountNumber;
-	}
 
 	public String getName() {
 
 		return firstName + " " + lastName;
+	}
+
+	public Trainee getTrainee() {
+		return (Trainee) trainees;
+	}
+
+	public String setTrainee(Trainee trainee) {
+		this.trainees = (List<Trainee>) trainee;
+
+		return "Trainee added";
 	}
 
 }
